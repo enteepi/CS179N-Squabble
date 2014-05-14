@@ -7,8 +7,6 @@ public class FroggerPlayer :
     public float Speed;
     public float Startpoint;
     public float Checkpoint;
-    public float Invincibility;
-    public float SpeedBoost;
 
     public int score;
 
@@ -25,15 +23,6 @@ public class FroggerPlayer :
 	
 	// Update is called once per frame
 	void Update () {
-        if (Invincibility > 0)
-        {
-            Invincibility -= Time.deltaTime;
-        }
-        if (SpeedBoost > 0)
-        {
-            SpeedBoost -= Time.deltaTime;
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             Plane playerPlane = new Plane(Vector3.up, transform.position);
@@ -51,48 +40,36 @@ public class FroggerPlayer :
 
         if (transform.position != moveTo && GameObject.Find("Floor").GetComponent<FroggerStart>().GameTimer > 0)
         {
-            float distCovered = (Time.time - startTime) * Speed;
+            float distCovered = (Time.time - startTime) * Speed;            
+            GetComponent<Animator>().SetBool("moving", true);            
             if (distCovered / moveDist < 0.9f)
                 transform.position = Vector3.Lerp(transform.position, moveTo, distCovered / moveDist);
             else
                 transform.position = Vector3.Lerp(transform.position, moveTo, 1);
         }
+        else
+        {
+            GetComponent<Animator>().SetBool("moving", false);
+            GetComponent<Animator>().Play("Idle");
+        }
         GameObject.Find("ScoreDisplay").GetComponent<GUIText>().text = "Score: " + score;
 	}
 
     void OnTriggerEnter(Collider collider)
-    {        
-        Car car = collider.GetComponent<Car>();
-        if (car)
+    {
+        if (collider.tag == "Car")
         {
-            Debug.Log("HONK");
-            if (Invincibility > 0)
-            {
-                collider.rigidbody.velocity = new Vector3(0, collider.rigidbody.velocity.x, 0);
-            }
-            else
-            {
-                score -= 10;
-                transform.position = new Vector3(Checkpoint, transform.position.y, transform.position.z);
-                moveTo = transform.position;
-            }
+            score -= 10;
+            transform.position = new Vector3(Checkpoint, transform.position.y, transform.position.z);
+            moveTo = transform.position;
         }
-
-        Bus bus = collider.GetComponent<Bus>();
-        if (bus)
-        {
-            Debug.Log("BANG");
-            if (Invincibility > 0)
-            {
-                collider.rigidbody.velocity = new Vector3(0, collider.rigidbody.velocity.x, 0);
-            }
-            else
-            {
-                score -= 5;
-                transform.position = new Vector3(Startpoint, transform.position.y, transform.position.z);
-                Checkpoint = Startpoint;
-                moveTo = transform.position;
-            }
+        
+        if (collider.tag == "Bus")
+        {            
+            score -= 5;
+            transform.position = new Vector3(Startpoint, transform.position.y, transform.position.z);
+            Checkpoint = Startpoint;
+            moveTo = transform.position;            
         }
 
         FroggerCheckpoint check = collider.GetComponent<FroggerCheckpoint>();
@@ -110,12 +87,6 @@ public class FroggerPlayer :
             Checkpoint = Startpoint;
             moveTo = transform.position;
 
-        }
-
-        FroggerPlayer player = collider.GetComponent<FroggerPlayer>();
-        if (player)
-        {
-            
         }
     }
 }

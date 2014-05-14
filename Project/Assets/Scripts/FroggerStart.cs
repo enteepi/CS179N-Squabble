@@ -8,28 +8,60 @@ public class FroggerStart :
 
     void Start()
     {
+        Spawn();
+    }
+
+    void Spawn()
+    {
         GameObject trafficSpawner = Resources.Load<GameObject>("TrafficSpawner");
         GameObject checkPoint = Resources.Load<GameObject>("Checkpoint");
 
         int cpWeight = 0;
         int trafficWeight = 0;
+        int checkPoints = 4;
         bool cpPrev = false;
         for (int lane = -19; lane < 20; lane += 2)
         {
             GameObject obj;
             int choice = Random.Range(1, 8) + cpWeight;
-            if (choice < 7)
+            if (choice < 7 || checkPoints == 0 || trafficWeight <= 2)
             {
+                int speed = Random.Range(1, 10);
                 // Place Upward Spawner
-                obj = Instantiate(trafficSpawner) as GameObject;
-                if (choice <= 3)
+
+                float cooldown = 1.25f;
+                switch (speed)
                 {
-                    obj.GetComponent<TrafficSpawner>().TrafficVelocity = 5;
+                    case 10:
+                    case 9:
+                    case 8:
+                        cooldown = 0.75f;
+                        break;
+                    case 7:
+                    case 6:
+                    case 5:
+                    case 4:
+                        cooldown = 1;
+                        break;
+                    case 3:
+                    case 2:
+                    default:
+                        break;
+                }
+                
+                obj = Instantiate(trafficSpawner) as GameObject;
+                if (choice <= 3 || ((checkPoints == 0 || trafficWeight <= 2) && choice / 4 < 1))
+                {
+                    obj.GetComponent<TrafficSpawner>().TrafficVelocity = 5 * speed;
+                    obj.GetComponent<TrafficSpawner>().CooldownMin = cooldown;
+                    obj.GetComponent<TrafficSpawner>().CooldownMax = cooldown + 1;
                     obj.transform.position = new Vector3(lane, obj.transform.position.y, -15);
                 }
                 else
-                {                
-                    obj.GetComponent<TrafficSpawner>().TrafficVelocity = -5;
+                {
+                    obj.GetComponent<TrafficSpawner>().TrafficVelocity = -5 * speed;
+                    obj.GetComponent<TrafficSpawner>().CooldownMin = cooldown;
+                    obj.GetComponent<TrafficSpawner>().CooldownMax = cooldown + 1;
                     obj.transform.position = new Vector3(lane, obj.transform.position.y, 15);
                 }
                 ++cpWeight;
@@ -44,6 +76,7 @@ public class FroggerStart :
                 cpWeight = 0;
                 trafficWeight = 0;
                 cpPrev = true;
+                --checkPoints;
             }
             else
             {
@@ -54,11 +87,11 @@ public class FroggerStart :
 
     void Update()
     {
-        GameTimer -= Time.deltaTime;
-        GameObject.Find("TimeDisplay").GetComponent<GUIText>().text = "Time: " + string.Format("{0:0.0}", (GameTimer));
-        if (GameTimer <= 0)
-        {
-            Time.timeScale = 0;
-        }
+        //GameTimer -= Time.deltaTime;
+        //GameObject.Find("TimeDisplay").GetComponent<GUIText>().text = "Time: " + string.Format("{0:0.0}", (GameTimer));
+        //if (GameTimer <= 0)
+        //{
+        //    Time.timeScale = 0;
+        //}
     }
 }

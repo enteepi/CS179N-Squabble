@@ -7,10 +7,8 @@ public class TrafficSpawner :
     public float TrafficVelocity;
     public int CarChance;
     public int BusChance;
-    public float CarCooldownMin;
-    public float CarCooldownMax;
-    public float BusCooldownMin;
-    public float BusCooldownMax;
+    public float CooldownMin;
+    public float CooldownMax;
     
     float cooldown;
 
@@ -40,7 +38,7 @@ public class TrafficSpawner :
         car.rigidbody.velocity = new Vector3(0, 0, TrafficVelocity);
         Destroy(car, 10);
         
-        cooldown = Random.Range(CarCooldownMin, CarCooldownMax);
+        cooldown = Random.Range(CooldownMin, CooldownMax);
     }
 
 
@@ -53,6 +51,6 @@ public class TrafficSpawner :
         bus.rigidbody.velocity = new Vector3(0, 0, TrafficVelocity);
         Destroy(bus, 10);
 
-        cooldown = Random.Range(BusCooldownMin, BusCooldownMax);
+        cooldown = Random.Range(CooldownMin, CooldownMax);
     }
 }
