@@ -4,10 +4,11 @@ using System.Collections;
 public class FroggerStart : 
     MonoBehaviour
 {
-    public float GameTimer = 3000;
+    public float GameTimer = 10;
 
     void Start()
     {
+        Time.timeScale = 1;
         Spawn();
     }
 
@@ -87,11 +88,11 @@ public class FroggerStart :
 
     void Update()
     {
-        //GameTimer -= Time.deltaTime;
-        //GameObject.Find("TimeDisplay").GetComponent<GUIText>().text = "Time: " + string.Format("{0:0.0}", (GameTimer));
-        //if (GameTimer <= 0)
-        //{
-        //    Time.timeScale = 0;
-        //}
+        GameTimer -= Time.deltaTime;
+        GameObject.Find("TimeDisplay").GetComponent<GUIText>().text = "Time: " + string.Format("{0:0.0}", (GameTimer));
+        if (GameTimer <= 0)
+        {
+            Time.timeScale = 0;
+        }
     }
 }

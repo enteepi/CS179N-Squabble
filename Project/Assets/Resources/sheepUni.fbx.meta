@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: 2f846c437ed16f44ca87ff025a520d09
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group
+    100004: group1
+    100006: pasted__group
+    100008: pasted__pasted__pCube4
+    100010: pasted__pCube4
+    100012: pasted__pCube4 1
+    100014: pCone1
+    100016: pCube1
+    100018: pCube3
+    100020: pCube4
+    100022: pCube5
+    100024: pSphere1
+    100026: softMod10Handle
+    100028: softMod11Handle
+    100030: softMod12Handle
+    100032: softMod13Handle
+    100034: softMod14Handle
+    100036: softMod15Handle
+    100038: softMod16Handle
+    100040: softMod17Handle
+    100042: softMod18Handle
+    100044: softMod1Handle
+    100046: softMod2Handle
+    100048: softMod3Handle
+    100050: softMod4Handle
+    100052: softMod5Handle
+    100054: softMod6Handle
+    100056: softMod7Handle
+    100058: softMod8Handle
+    100060: softMod9Handle
+    400000: //RootNode
+    400002: group
+    400004: group1
+    400006: pasted__group
+    400008: pasted__pasted__pCube4
+    400010: pasted__pCube4
+    400012: pasted__pCube4 1
+    400014: pCone1
+    400016: pCube1
+    400018: pCube3
+    400020: pCube4
+    400022: pCube5
+    400024: pSphere1
+    400026: softMod10Handle
+    400028: softMod11Handle
+    400030: softMod12Handle
+    400032: softMod13Handle
+    400034: softMod14Handle
+    400036: softMod15Handle
+    400038: softMod16Handle
+    400040: softMod17Handle
+    400042: softMod18Handle
+    400044: softMod1Handle
+    400046: softMod2Handle
+    400048: softMod3Handle
+    400050: softMod4Handle
+    400052: softMod5Handle
+    400054: softMod6Handle
+    400056: softMod7Handle
+    400058: softMod8Handle
+    400060: softMod9Handle
+    2300000: pasted__pasted__pCube4
+    2300002: pasted__pCube4
+    2300004: pasted__pCube4 1
+    2300006: pCone1
+    2300008: pCube1
+    2300010: pCube3
+    2300012: pCube4
+    2300014: pCube5
+    2300016: pSphere1
+    3300000: pasted__pasted__pCube4
+    3300002: pasted__pCube4
+    3300004: pasted__pCube4 1
+    3300006: pCone1
+    3300008: pCube1
+    3300010: pCube3
+    3300012: pCube4
+    3300014: pCube5
+    3300016: pSphere1
+    4300000: pCube1
+    4300002: pCube3
+    4300004: pCube4
+    4300006: pasted__pCube4
+    4300008: pasted__pCube4
+    4300010: pasted__pasted__pCube4
+    4300012: pCube5
+    4300014: pSphere1
+    4300016: pCone1
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

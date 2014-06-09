@@ -4,6 +4,9 @@ using System.Collections;
 public class TrafficSpawner : 
     MonoBehaviour 
 {
+    public GameObject Bus;
+    public GameObject Car;
+
     public float TrafficVelocity;
     public int CarChance;
     public int BusChance;
@@ -31,10 +34,13 @@ public class TrafficSpawner :
 	}
 
     void SpawnCar() {
-        GameObject car = Instantiate(Resources.Load<GameObject>("Car")) as GameObject;
+        GameObject car = Instantiate(Car) as GameObject;
 
         car.transform.position = transform.position;
+        //car.transform.localPosition = Vector3.zero;
         car.transform.parent = transform;
+        if (TrafficVelocity < 0)
+            car.transform.eulerAngles = new Vector3(0, 180, 0);
         car.rigidbody.velocity = new Vector3(0, 0, TrafficVelocity);
         Destroy(car, 10);
         
@@ -44,10 +50,13 @@ public class TrafficSpawner :
 
     void SpawnBus()
     {
-        GameObject bus = Instantiate(Resources.Load<GameObject>("Bus")) as GameObject;
+        GameObject bus = Instantiate(Bus) as GameObject;
 
         bus.transform.position = transform.position;
+        //bus.transform.localPosition = Vector3.zero;
         bus.transform.parent = transform;
+        if (TrafficVelocity < 0)
+            bus.transform.eulerAngles = new Vector3(0, 180, 0);
         bus.rigidbody.velocity = new Vector3(0, 0, TrafficVelocity);
         Destroy(bus, 10);
 

@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\FroggerPlayer.cs" />
      <Compile Include="Assets\Scripts\FroggerStart.cs" />
      <Compile Include="Assets\Scripts\ShootoutCounter.cs" />
+     <Compile Include="Assets\Scripts\ShootoutManager.cs" />
      <Compile Include="Assets\Scripts\ShootoutShooter.cs" />
      <Compile Include="Assets\Scripts\ShootoutTarget.cs" />
      <Compile Include="Assets\Scripts\TrafficSpawner.cs" />

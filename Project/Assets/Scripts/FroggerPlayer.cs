@@ -59,14 +59,12 @@ public class FroggerPlayer :
     {
         if (collider.tag == "Car")
         {
-            score -= 10;
             transform.position = new Vector3(Checkpoint, transform.position.y, transform.position.z);
             moveTo = transform.position;
         }
         
         if (collider.tag == "Bus")
-        {            
-            score -= 5;
+        {
             transform.position = new Vector3(Startpoint, transform.position.y, transform.position.z);
             Checkpoint = Startpoint;
             moveTo = transform.position;            
@@ -76,7 +74,7 @@ public class FroggerPlayer :
         if (check != null)
         {
             if (check.transform.position.x != Checkpoint) 
-                score += 20 * check.ScoreMult;
+                score += check.ScoreMult;
             Checkpoint = collider.transform.position.x;
         }
 

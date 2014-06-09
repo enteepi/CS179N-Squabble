@@ -4,7 +4,6 @@ using System.Collections;
 public class ShootoutCounter :
     MonoBehaviour
 {
-    public int ClipPool;
     public int ClipSize;
     public float ReloadLength;
 
@@ -37,17 +36,14 @@ public class ShootoutCounter :
         {
             reloading = false;
             clip = ClipSize;
-            ClipPool -= ClipSize;
-            if (ClipPool < 0)
-                clip += ClipPool;
         }
 
         for (int i = 0; i < ClipSize; ++i)
         {
-            if (i <= clip)
-                transform.FindChild("t" + i).renderer.enabled = true;
+            if (i + 1 <= clip)
+                transform.FindChild("t" + i).transform.localScale = new Vector3(70, 70, 70);
             else
-                transform.FindChild("t" + i).renderer.enabled = false;
+                transform.FindChild("t" + i).transform.localScale = new Vector3(0, 0, 0);
         }
     }
 
@@ -58,7 +54,7 @@ public class ShootoutCounter :
 
     public void Reload()
     {
-        if (!reloading)
+        if (!reloading && clip < 10)
         {
             reloading = true;
             reloadTime = ReloadLength;

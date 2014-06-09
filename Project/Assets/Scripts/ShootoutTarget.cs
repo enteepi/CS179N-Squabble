@@ -5,16 +5,16 @@ using System.Collections;
 public class ShootoutTarget :
     MonoBehaviour
 {
-    public ShootoutTarget Partner;
-    public float CooldownMin;
-    public float CooldownMax;
-    public float SpeedMin;
-    public float SpeedMax;
     public float Length;
+    public float Speed;
+    public bool IsTarget;
 
-    float cooldown;
-    float speed;
     Vector3 origin;
+
+    public float DistanceTravelled
+    {
+        get { return transform.position.magnitude - origin.magnitude; }
+    }
 
     void Start()
     {
@@ -24,44 +24,43 @@ public class ShootoutTarget :
 
     void Update()
     {
-        if (cooldown <= 0)
-        {
-            if (speed == 0 && Partner.speed == 0)
-            {
-                speed = Random.Range(SpeedMin, SpeedMax);
-            }
-            else if (transform.position.magnitude - origin.magnitude >= Length)
-            {
-                Reset();
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x + speed, transform.position.y, transform.position.z);
-            }
-        }
-        else
-        {
-            cooldown -= Time.fixedDeltaTime;
-        }
+        if (transform.position.magnitude - origin.magnitude >= Length)
+            Reset();
+
+        if(Time.timeScale != 0)
+            transform.position = new Vector3(transform.position.x + Speed, transform.position.y, transform.position.z);
     }
 
     void OnTriggerEnter(Collider collider)
     {
         if (collider.tag == "Arrow")
         {
-            GameObject hitPart = Instantiate(Resources.Load<GameObject>("squubhit")) as GameObject;
-            hitPart.transform.position = this.transform.position;
-            Reset();
-            Destroy(hitPart, 1);
-            Destroy(collider);
+            if (IsTarget)
+            {
+                GameObject hitPart = Instantiate(Resources.Load<GameObject>("sheephit")) as GameObject;
+                hitPart.transform.position = this.transform.position;
+                Reset();
+                Destroy(hitPart, 1);
+                Destroy(collider);
+            }
+            else
+            {
+                // GAME OVER
+                GameObject hitPart = Instantiate(Resources.Load<GameObject>("squubhit")) as GameObject;
+                hitPart.transform.position = this.transform.position;
+                Reset();
+                Destroy(hitPart, 1);
+                Destroy(collider);
+                Time.timeScale = 0;
+            }
         }
     }
     
     public void Reset()
     {
-        speed = 0f;
+        Speed = 0f;
         transform.position = origin;
-        cooldown = Random.Range(CooldownMax, CooldownMin);
+        //cooldown = Random.Range(CooldownMax, CooldownMin);
     }
 }
 
